@@ -2,21 +2,25 @@ import React, { useState } from "react"
 import ReactDOM from "react-dom"
 
 const Statistics = (props) => {
-  return (
-    <div>
-      good {props.good} <br />
-      neutral {props.neutral} <br />
-      bad {props.bad}
-      <br />
-      all {props.good + props.neutral + props.bad}
-      <br />
-      average{" "}
-      {(props.good - props.bad) / (props.good + props.neutral + props.bad)}
-      <br />
-      positive {(props.good / (props.good + props.neutral + props.bad)) * 100} %
-      <br />
-    </div>
-  )
+  if (props.good + props.neutral + props.bad > 0) {
+    return (
+      <div>
+        good {props.good} <br />
+        neutral {props.neutral} <br />
+        bad {props.bad}
+        <br />
+        all {props.good + props.neutral + props.bad}
+        <br />
+        average{" "}
+        {(props.good - props.bad) / (props.good + props.neutral + props.bad)}
+        <br />
+        positive {(props.good / (props.good + props.neutral + props.bad)) *
+          100}{" "}
+        %
+        <br />
+      </div>
+    )
+  } else return <div>No feedback given</div>
 }
 
 const App = () => {
