@@ -3,9 +3,13 @@ import ReactDOM from "react-dom"
 
 const StatisticsLine = (props) => {
   return (
-    <div>
-      {props.name} {props.value} {props.addon} <br />
-    </div>
+    <>
+      <tr>
+        <th>{props.name}</th>
+        <th>{props.value}</th>
+        <th>{props.addon} </th>
+      </tr>
+    </>
   )
 }
 
@@ -13,24 +17,31 @@ const Statistics = (props) => {
   if (props.good + props.neutral + props.bad > 0) {
     return (
       <div>
-        <StatisticsLine name={"good"} value={props.good} />
-        <StatisticsLine name={"neutral"} value={props.neutral} />
-        <StatisticsLine name={"bad"} value={props.bad} />
-        <StatisticsLine
-          name={"all"}
-          value={props.good + props.neutral + props.bad}
-        />
-        <StatisticsLine
-          name={"average"}
-          value={
-            (props.good - props.bad) / (props.good + props.neutral + props.bad)
-          }
-        />
-        <StatisticsLine
-          name={"positive"}
-          value={(props.good / (props.good + props.neutral + props.bad)) * 100}
-          addon={"%"}
-        />
+        <table>
+          <tbody>
+            <StatisticsLine name={"good"} value={props.good} />
+            <StatisticsLine name={"neutral"} value={props.neutral} />
+            <StatisticsLine name={"bad"} value={props.bad} />
+            <StatisticsLine
+              name={"all"}
+              value={props.good + props.neutral + props.bad}
+            />
+            <StatisticsLine
+              name={"average"}
+              value={
+                (props.good - props.bad) /
+                (props.good + props.neutral + props.bad)
+              }
+            />
+            <StatisticsLine
+              name={"positive"}
+              value={
+                (props.good / (props.good + props.neutral + props.bad)) * 100
+              }
+              addon={"%"}
+            />
+          </tbody>
+        </table>
       </div>
     )
   } else return <div>No feedback given</div>
